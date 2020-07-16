@@ -1,0 +1,6 @@
+# This is a test file for defining WebIDL for uniffi
+namespace experiments {};
+interface Experiments {
+    constructor();
+    void get_experiment_branch();
+};

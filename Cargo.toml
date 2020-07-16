@@ -1,0 +1,27 @@
+[package]
+name = "experiments"
+version = "0.1.0"
+authors = ["Tarik Eshaq <teshaq@mozilla.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+url = "2.1"
+serde = { version = "1", features = ["rc"] }
+serde_derive = "1"
+serde_json = "1"
+# This now references a local path on my own device. If we end up actually using viaduct,
+# We should maybe publish it as crate (similar to ffi-support)
+viaduct = { path = "../application-services/components/viaduct" }
+anyhow = "1.0"
+rand = "0.7"
+log = "0.4"
+ffi-support = "0.4"
+thiserror = "1"
+
+[dev-dependencies]
+# This now references a local path on my own device. If we end up actually using viaduct,
+# We should maybe publish it as crate (similar to ffi-support)
+viaduct-reqwest = { path = "../application-services/components/support/viaduct-reqwest" }
+
