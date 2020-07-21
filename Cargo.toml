@@ -1,5 +1,5 @@
 [package]
-name = "experiments"
+name = "nimbus_experiments"
 version = "0.1.0"
 authors = ["Tarik Eshaq <teshaq@mozilla.com>"]
 edition = "2018"
@@ -11,17 +11,24 @@ url = "2.1"
 serde = { version = "1", features = ["rc"] }
 serde_derive = "1"
 serde_json = "1"
-# This now references a local path on my own device. If we end up actually using viaduct,
-# We should maybe publish it as crate (similar to ffi-support)
-viaduct = { path = "../application-services/components/viaduct" }
 anyhow = "1.0"
 rand = "0.7"
 log = "0.4"
+viaduct = { git = "https://github.com/mozilla/application-services" }
 ffi-support = "0.4"
 thiserror = "1"
+rkv = "0.10"
+lazy_static = "1.4"
+uuid = { version = "0.8", features = ["serde", "v4"]}
+prost = "0.6"
+
+[build-dependencies]
+prost-build = { version = "0.6" }
+
+[lib]
+name = "nimbus_experiments"
+crate-type = ["lib"]
 
 [dev-dependencies]
-# This now references a local path on my own device. If we end up actually using viaduct,
-# We should maybe publish it as crate (similar to ffi-support)
-viaduct-reqwest = { path = "../application-services/components/support/viaduct-reqwest" }
+viaduct-reqwest = { git = "https://github.com/mozilla/application-services" }
 

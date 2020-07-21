@@ -1,12 +1,8 @@
 use anyhow::Result;
-use experiments::Experiments;
+use nimbus_experiments::{AppContext, Experiments};
 fn main() -> Result<()> {
     viaduct_reqwest::use_reqwest_backend();
-    let exp = Experiments::new(
-        "https://kinto.dev.mozaws.net/v1/",
-        "default",
-        "messaging-collection",
-    );
+    let exp = Experiments::new(AppContext::default(), "./mydb");
     let enrolled_exp = exp.get_enrolled_experiments();
     exp.get_experiments().iter().for_each(|e| {
         print!(

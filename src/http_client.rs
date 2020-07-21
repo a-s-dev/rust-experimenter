@@ -2,6 +2,10 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
+//! This is a simple Http client that uses viaduct to retrieve experiment data from the server
+//! Currently configured to use Kinto and the old schema, although that would change once we start
+//! Working on the real Nimbus schema.
+
 use super::Experiment;
 use anyhow::Result;
 use serde_derive::*;
@@ -66,13 +70,11 @@ impl SettingsClient for Client {
             &self.bucket_name, &self.collection_name
         );
         let url = self.base_url.join(&path)?;
-        let req = Request::get(url)
-            .header(
-                "User-Agent",
-                "Experiments Rust Component <teshaq@mozilla.com>",
-            )?;
-            // Note: I removed the auth info which was for a test account that is public
-            // But gitgaurdian complained so I removed it.
+        let req = Request::get(url).header(
+            "User-Agent",
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:77.0) Gecko/20100101 Firefox/77.0",
+        )?;
+        // TODO: Add authentication based on server requirements
         let resp = self.make_request(req)?.json::<RecordsResponse>()?;
         Ok(resp.data)
     }
