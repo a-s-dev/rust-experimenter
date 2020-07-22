@@ -1,0 +1,24 @@
+syntax = "proto2";
+
+// This kinda beats the purpose of using protobufs since we have one file here/
+// And a duplicate in the glean PR, but bear with me :)
+// Eventually once we figure out the details of where each part lives, we'll merge the proto files
+// into one
+
+package mozilla.telemetry.glean.protobuf;
+
+option java_package = "mozilla.telemtery.glean";
+option java_outer_classname = "MsgTypes";
+option swift_prefix = "MsgTypes_";
+option optimize_for = LITE_RUNTIME;
+
+message AppContext {
+    optional string app_id = 1;
+    optional string app_version = 2;
+    optional string locale_language = 3;
+    optional string locale_country = 4;
+    optional string device_manufacturer = 5;
+    optional string device_model = 6;
+    optional string region = 7;
+    optional string debug_tag = 8;
+}

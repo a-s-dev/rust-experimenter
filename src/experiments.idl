@@ -1,0 +1,9 @@
+# This is a test file for defining WebIDL for uniffi
+# For the time being, it is not used for anything!
+# However, if we use uniffi in the future, we could define
+# The api here. (Unless uniffi changes to a non WebIDL way (looking at you proc-macros))
+namespace experiments {};
+interface Experiments {
+    constructor();
+    void get_experiment_branch();
+};
